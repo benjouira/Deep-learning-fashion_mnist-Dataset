@@ -14,3 +14,47 @@ print(tf.__version__)
 
 
 # ********************************************************************
+fashion_mnist = tf.keras.datasets.fashion_mnist
+(train_images_f, train_labels_f), (test_images, test_labels) = fashion_mnist.load_data()
+
+# ********************************************************************
+print (train_images_f.shape, train_labels_f.shape, test_images.shape, test_labels.shape)
+
+
+# ********************************************************************
+train_images_f = train_images_f / 255
+test_images = test_images / 255
+train_images_f[1,12:17,10:13]
+
+
+# ********************************************************************
+train_images, val_images, train_labels, val_labels = train_test_split(train_images_f , train_labels_f , test_size=0.1, random_state=1)
+print(train_images.shape , val_images.shape)
+
+# ********************************************************************
+class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
+               'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+plt.figure(figsize=(5,5))
+for i in range(12):
+    plt.subplot(3,4,i+1)
+    plt.xticks([])
+    plt.yticks([])
+    plt.imshow(train_images[i],cmap=plt.cm.binary)
+    plt.xlabel ( class_names [train_labels[i]])
+
+# ********************************************************************
+cls_fashion = tf.keras.Sequential([tf.keras.layers.Flatten(input_shape=(28,28)),
+tf.keras.layers.Dense(128,activation= tf.nn.relu),
+tf.keras.layers.Dense(128,activation= tf.nn.relu),
+tf.keras.layers.Dense(128,activation= tf.nn.relu),
+tf.keras.layers.Dense(128,activation= tf.nn.relu),
+tf.keras.layers.Dense(128,activation= tf.nn.relu),
+tf.keras.layers.Dense(10,activation= tf.nn.softmax),
+])
+cls_fashion.summary()
+
+
+
+# ********************************************************************
+cls_fashion.compile(optimizer='adam', loss= tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),metrics=['accuracy'])
+
