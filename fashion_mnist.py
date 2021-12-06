@@ -58,3 +58,8 @@ cls_fashion.summary()
 # ********************************************************************
 cls_fashion.compile(optimizer='adam', loss= tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),metrics=['accuracy'])
 
+
+# ********************************************************************
+history = cls_fashion.fit (train_images,train_labels , epochs= 10 , validation_data= (val_images,val_labels))
+# by default batch_size = non same as batch_size=32
+
