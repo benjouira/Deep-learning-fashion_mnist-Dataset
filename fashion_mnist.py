@@ -83,4 +83,10 @@ pred_labels= np.argmax(pred_labels ,axis=1)
 cm = confusion_matrix(test_labels, pred_labels)
 sns.heatmap(cm, annot=True, fmt='d')
 
+
 # *********************************************
+# Calculer les mesures de perte (loss) et de précision (accuracy)
+loss_t, acc_t = cls_fashion.evaluate(test_images, test_labels, verbose=2)
+# other method
+print(accuracy_score(test_labels,pred_labels))
+
