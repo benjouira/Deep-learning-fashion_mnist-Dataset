@@ -72,6 +72,7 @@ plt.gca().set_ylim(0,2) # set the vertical range to [0,1]
 plt.show()
 
 # ***************************************
+# matrice de confusion
 
 pred_labels= cls_fashion.predict(test_images)
 print(pred_labels.shape)
@@ -81,3 +82,5 @@ pred_labels= np.argmax(pred_labels ,axis=1)
 
 cm = confusion_matrix(test_labels, pred_labels)
 sns.heatmap(cm, annot=True, fmt='d')
+
+# *********************************************
