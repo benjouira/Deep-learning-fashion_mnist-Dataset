@@ -63,3 +63,10 @@ cls_fashion.compile(optimizer='adam', loss= tf.keras.losses.SparseCategoricalCro
 history = cls_fashion.fit (train_images,train_labels , epochs= 10 , validation_data= (val_images,val_labels))
 # by default batch_size = non same as batch_size=32
 
+# ***************************************
+
+# Validation du modèle
+pd.DataFrame(history.history).plot(figsize=(8,5))
+plt.grid(True)
+plt.gca().set_ylim(0,2) # set the vertical range to [0,1]
+plt.show()
