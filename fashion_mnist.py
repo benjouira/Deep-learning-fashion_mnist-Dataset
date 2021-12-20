@@ -95,4 +95,3 @@ print(accuracy_score(test_labels,pred_labels))
 #  rapport de classification des données de test
 print(classification_report(test_labels,pred_labels))
 
-
